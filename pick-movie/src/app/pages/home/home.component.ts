@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { TmdbService } from 'src/app/services/tmdb.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public tmdbService: TmdbService
+  ) { }
 
   ngOnInit() {
+    this.tmdbService.getMovie('550')
+      .subscribe(
+        response => {
+          console.log(response);
+        }
+      )
   }
 
 }
